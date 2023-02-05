@@ -1,0 +1,55 @@
+@media (max-width: 990px) {
+    .nk-aside {
+        position: fixed;
+        padding-top: 0px;
+        top: auto;
+        bottom: 0;
+        min-height: 90px;
+        max-height: 90px;
+        width: 100%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        background-color: #f7b900;
+    }
+
+    .nk-aside .nk-menu-icon {
+        color: white;
+    }
+
+    .nk-menu {
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+    .nk-menu-heading {
+        display: none;
+    }
+
+    .nk-menu-link {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 20px;
+    }
+
+    .nk-menu-link span {
+        text-align: center;
+    }
+
+    .nk-menu-text {
+        color: white;
+    }
+
+    .mobile-nav-menu {
+        display: none;
+    }
+
+    .history-menu {
+        display: none;
+    }
+
+    .nk-menu-link:hover .nk-menu-icon,
+    .nk-menu-item.active>.nk-menu-link .nk-menu-icon,
+    .nk-menu-item.current-menu>.nk-menu-link .nk-menu-icon {
+        color: white;
+    }
+}
