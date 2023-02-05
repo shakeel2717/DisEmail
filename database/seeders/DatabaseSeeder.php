@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\banner;
+use App\Models\Domain;
 use App\Models\Gateway;
 use App\Models\Group;
 use App\Models\Setting;
@@ -41,6 +42,16 @@ class DatabaseSeeder extends Seeder
             'email' => 'shakeel2717@gmail.com',
             'mobile' => '03031212125',
             'password' => Hash::make('asdfasdf'),
+        ]);
+
+        Domain::factory()->create([
+            'domain' => 'happyhours.ae',
+            'status' => true,
+        ]);
+
+        Domain::factory()->create([
+            'domain' => 'gmail',
+            'status' => true,
         ]);
     }
 }

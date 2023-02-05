@@ -2,37 +2,56 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Domain;
 use Livewire\Component;
 
 class Emails extends Component
 {
 
-    public $emails;
+    public $emails = [];
+    public $username;
+    public $default;
+    public $domains;
+    public $domain;
+    public $domain_id;
+    public $hostname;
 
     public function mount()
     {
-        $this->fetchEmails();
+        $this->domains = Domain::where('status', true)->get();
     }
 
-    public function fetchEmails()
+    public function fetch()
     {
-        $hostname = '{mail.happyhours.ae:993/imap/ssl}INBOX';
-        $username = 'usmankhan@happyhours.ae';
+        $this->domain = Domain::find($this->domain_id);
+        $this->hostname = '{mail.' . $this->domain->domain . ':993/imap/ssl}INBOX';
+        $this->emails = [];
+        $this->fetchEmails($this->hostname);
+    }
+
+
+
+    public function fetchEmails($hostname)
+    {
+        $default = $this->default . '@' . $this->domain->domain;
         $password = 'happyhours@UAE';
-        $inbox = imap_open($hostname, $username, $password) or die('Cannot connect to cPanel: ' . imap_last_error());
+        $inbox = imap_open($hostname, $default, $password) or die('Cannot connect to cPanel: ' . imap_last_error());
         $emails = imap_search($inbox, 'ALL');
         if ($emails) {
             $data = array_reverse($emails);
             foreach ($data as $email_number) {
                 $header = imap_headerinfo($inbox, $email_number);
-                $subject = $header->subject;
-                $body = imap_fetchbody($inbox, $email_number, 1);
-                $time = date("Y-m-d H:i:s", $header->udate);
-                $this->emails[] = [
-                    'subject' => $subject,
-                    'body' => $body,
-                    'time' => $time,
-                ];
+                if ($header->to[0]->mailbox == $this->username) {
+                    $subject = $header->subject;
+                    $body = imap_fetchbody($inbox, $email_number, 1);
+                    $time = date("Y-m-d H:i:s", $header->udate);
+                    $this->emails[] = [
+                        'subject' => $subject,
+                        'body' => $body,
+                        'time' => $time,
+                        'to' => $header->to[0]->mailbox . "@" . $header->to[0]->host,
+                    ];
+                }
             }
         }
         imap_close($inbox);
@@ -44,16 +63,11 @@ class Emails extends Component
     {
         cache()->forget('emails');
         $this->emails = [];
-        $this->fetchEmails();
+        $this->fetchEmails($this->hostname);
     }
 
     public function render()
     {
-        $emails = cache()->get('emails');
-        if (!$emails) {
-            $this->fetchEmails();
-            $emails = $this->emails;
-        }
-        return view('livewire.emails', ['emails' => $emails]);
+        return view('livewire.emails');
     }
 }
