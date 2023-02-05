@@ -13,5 +13,5 @@
 </div>
 @endsection
 @section('content')
-HI
+@livewire('emails')
 @endsection
