@@ -39,8 +39,7 @@
                         <div class="nk-header-wrap">
                             <div class="nk-header-brand">
                                 <a href="{{ route('user.dashboard.index') }}" class="logo-link">
-                                    <img class="logo-light logo-img" src="{{ asset('assets/svg/logo-light.svg') }}" srcset="{{ asset('assets/svg/logo-light.svg') }} 2x" alt="logo">
-                                    <img class="logo-dark logo-img" src="{{ asset('assets/svg/logo.svg') }}" srcset="{{ asset('assets/svg/logo.svg') }} 2x" alt="logo-dark">
+                                    <h2 class="text-dark">{{ env('APP_NAME') }}</h2>
                                 </a>
                             </div>
                             <div class="nk-header-tools">

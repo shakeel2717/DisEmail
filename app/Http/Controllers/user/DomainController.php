@@ -90,6 +90,9 @@ class DomainController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $domain = Domain::FindOrFail($id);
+        $domain->delete();
+
+        return back()->with('success','Domain Removed');
     }
 }

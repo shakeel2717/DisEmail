@@ -22,7 +22,7 @@
                 <input type="text" name="domain" class="form-control" id="domain">
             </div>
             <div class="form-group">
-                <button class="btn btn-primary btn-sm" type="submit">Fetch Emails</button>
+                <button class="btn btn-primary btn-sm" type="submit">Add Domain</button>
             </div>
         </form>
     </div>
@@ -33,8 +33,13 @@
         <div class="card card-bordered shadow card-full">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="m-2">
-                    <h5 class="amount">{{ $domain->domain }}</h5>
+                    <h5 class="amount">{{ $domain->domain }} </h5>
                     <p>{{ $domain->created_at->diffForHumans() }}</p>
+                    <form action="{{ route('user.domain.destroy',['domain' => $domain->id]) }}" method="POST">
+                        @method("DELETE")
+                        @csrf
+                        <button class="btn btn-danger btn-sm" type="submit">Remove Domain</button>
+                    </form>
                 </div>
             </div>
         </div>
