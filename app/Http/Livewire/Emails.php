@@ -25,7 +25,7 @@ class Emails extends Component
     public function fetch()
     {
         $this->domain = Domain::find($this->domain_id);
-        $this->hostname = '{mail.' . $this->domain->domain . ':993/imap/ssl}INBOX';
+        $this->hostname = '{'.$this->domain->domain . ':993/imap/ssl}INBOX';
         $this->emails = [];
         $this->fetchEmails($this->hostname);
     }
