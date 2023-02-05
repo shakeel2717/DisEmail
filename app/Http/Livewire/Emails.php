@@ -10,7 +10,8 @@ class Emails extends Component
 
     public $emails = [];
     public $username;
-    public $default;
+    public $password;
+    public $default = 'default';
     public $domains;
     public $domain;
     public $domain_id;
@@ -34,8 +35,7 @@ class Emails extends Component
     public function fetchEmails($hostname)
     {
         $default = $this->default . '@' . $this->domain->domain;
-        $password = 'happyhours@UAE';
-        $inbox = imap_open($hostname, $default, $password) or die('Cannot connect to cPanel: ' . imap_last_error());
+        $inbox = imap_open($hostname, $default, $this->password) or die('Cannot connect to cPanel: ' . imap_last_error());
         $emails = imap_search($inbox, 'ALL');
         if ($emails) {
             $data = array_reverse($emails);

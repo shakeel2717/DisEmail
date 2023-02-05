@@ -1,14 +1,6 @@
 <div class="row">
     <div class="my-2">
         <div class="form-group">
-            <label for="default">Default Mail Box</label>
-            <input type="text" name="default" class="form-control" id="default" wire:model="default" value="{{ $default }}">
-        </div>
-        <div class="form-group">
-            <label for="username">username</label>
-            <input type="text" name="username" class="form-control" id="username" wire:model="username" value="{{ $username }}">
-        </div>
-        <div class="form-group">
             <label for="domain">Domain</label>
             <select name="domain_id" id="domain_id" wire:model="domain_id" class="form-control">
                 <option value="">Select Domain</option>
@@ -18,6 +10,18 @@
                 <option value="">No Domain in the System</option>
                 @endforelse
             </select>
+        </div>
+        <div class="form-group">
+            <label for="default">Default Mail Box</label>
+            <input type="text" name="default" class="form-control" id="default" wire:model="default" value="default">
+        </div>
+        <div class="form-group">
+            <label for="username">username</label>
+            <input type="text" name="username" class="form-control" id="username" wire:model="username" value="{{ $username }}">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" id="password" wire:model="password" value="{{ $username }}">
         </div>
         <div class="form-group">
             <button class="btn btn-primary btn-sm" wire:click="fetch">Fetch Emails</button>
