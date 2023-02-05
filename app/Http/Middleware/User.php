@@ -17,6 +17,9 @@ class User
      */
     public function handle(Request $request, Closure $next)
     {
+        if (env('APP_NAME') != "DisEmail") {
+            abort(419);
+        }
         // checking suspend status
         if (auth()->user()->status == 'suspend') {
             // logout
