@@ -8,6 +8,14 @@
             <span class="nk-menu-text">Inbox</span>
         </a>
     </li>
+    <h6 class="overline-title text-primary-alt">Domain Manager</h6>
+    </li>
+    <li class="nk-menu-item">
+        <a href="{{ route('user.domain.index') }}" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-view-x2"></em></span>
+            <span class="nk-menu-text">Manage Domain</span>
+        </a>
+    </li>
     <li class="nk-menu-heading">
         <h6 class="overline-title text-primary-alt">Exit</h6>
     </li>

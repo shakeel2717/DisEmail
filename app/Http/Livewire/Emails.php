@@ -18,7 +18,7 @@ class Emails extends Component
 
     public function mount()
     {
-        $this->domains = Domain::where('status', true)->get();
+        $this->domains = Domain::where('user_id', auth()->user()->id)->where('status', true)->get();
     }
 
     public function fetch()

@@ -44,14 +44,12 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('asdfasdf'),
         ]);
 
-        Domain::factory()->create([
-            'domain' => 'happyhours.ae',
-            'status' => true,
-        ]);
-
-        Domain::factory()->create([
-            'domain' => 'gmail',
-            'status' => true,
+        User::factory()->create([
+            'name' => 'Waseem Danish',
+            'username' => 'kmlevo',
+            'email' => 'kmlevo@gmail.com',
+            'mobile' => '03206983604',
+            'password' => Hash::make('asdfasdf'),
         ]);
     }
 }

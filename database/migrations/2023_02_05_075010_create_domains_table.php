@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('domains', function (Blueprint $table) {
             $table->id();
-            $table->string('domain');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('domain')->unique();
             $table->boolean('status')->default(true);
             $table->timestamps();
         });
