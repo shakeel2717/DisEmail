@@ -29,7 +29,7 @@ class AuthenticatedSessionController extends Controller
         $user = User::where('username', $username)->firstOrFail();
         // checking if this user password is correct
         if (!Hash::check($password, $user->password)) {
-            return redirect()->route('landing')->withErrors('Incorrect Account Password, Please try again');
+            return redirect('/')->withErrors('Incorrect Account Password, Please try again');
         }
 
         Auth::login($user);

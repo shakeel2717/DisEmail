@@ -29,7 +29,7 @@
                     <div class="col-md-4">
                         <ul class="nav link-list-menu border border-light round m-0" role="tablist">
                             @foreach ($emails as $email)
-                            <li><a class="" data-bs-toggle="tab" href="#tab{{ $loop->iteration }}" aria-selected="false" role="tab" tabindex="-1"><em class="icon ni ni-comments"></em><span>{{ Str::limit($email['subject'],20) }}</span></a></li>
+                            <li><a style="font-size: 15px;" class="" data-bs-toggle="tab" href="#tab{{ $loop->iteration }}" aria-selected="false" role="tab" tabindex="-1"><em class="icon ni ni-comments"></em><span>{{ Str::limit($email['subject'],20) }}</span></a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -38,10 +38,10 @@
                             @forelse ($emails as $email)
                             <div class="tab-pane" id="tab{{ $loop->iteration }}" role="tabpanel">
                                 <div class="d-flex justify-content-between">
-                                    <p>({{ $email['to'] }})</p>
+                                    <p>From:<b>{{ $email['from'] }} </b></p>
                                     <p>{{ now()->parse($email['time'])->diffForHumans() }}</p>
                                 </div>
-                                <p><b>{{ $email['subject'] }}</b></p>
+                                <p>Subject:<b>{{ $email['subject'] }}</b></p>
                                 <p>{{ $email['body'] }}</p>
                             </div>
                             @empty

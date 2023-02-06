@@ -55,7 +55,7 @@ class Emails extends Component
                         'subject' => $subject,
                         'body' => $body,
                         'time' => $time,
-                        'to' => $header->to[0]->mailbox . "@" . $header->to[0]->host,
+                        'from' => $header->from[0]->mailbox . "@" . $header->from[0]->host,
                     ];
                 }
             }
