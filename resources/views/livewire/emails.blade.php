@@ -20,6 +20,9 @@
         <div class="col my-3">
             <button class="btn btn-primary btn-sm" wire:click="refresh">Refresh</button>
         </div>
+        <div class="spinner-border" role="status" wire:loading>
+            <span class="sr-only"></span>
+        </div>
     </div>
 
     <div class="row">
