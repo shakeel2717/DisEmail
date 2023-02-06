@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('domain')->unique();
             $table->string('default')->default('default');
             $table->string('password');
+            $table->string('protocol')->nullable();
             $table->integer('port')->default(993);
             $table->boolean('status')->default(true);
             $table->timestamps();

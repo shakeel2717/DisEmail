@@ -38,7 +38,7 @@ class Emails extends Component
 
     public function fetchEmails()
     {
-        $hostname = '{mail.' . $this->domain->domain . ':' . $this->domain->port . '/imap/ssl}INBOX';
+        $hostname = '{'.$this->domain->protocol . $this->domain->domain . ':' . $this->domain->port . '/imap/ssl}INBOX';
         $default = $this->domain->default . '@' . $this->domain->domain;
         $this->fullEmail = $default;
         $inbox = imap_open($hostname, $default, $this->domain->password) or die('Cannot connect to cPanel: ' . imap_last_error());

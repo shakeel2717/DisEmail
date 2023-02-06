@@ -169,7 +169,6 @@
             tempInput.val(elementValue).select();
             document.execCommand("copy");
             tempInput.remove();
-            alert("Text Copied to Clipboard: " + elementValue);
         }
     </script>
 </body>

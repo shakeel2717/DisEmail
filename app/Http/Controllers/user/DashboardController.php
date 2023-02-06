@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Models\banner;
 use App\Models\Bet;
+use App\Models\Domain;
 use App\Models\Group;
 use App\Models\Lottery;
 use App\Models\Tid;
@@ -20,6 +21,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $domain = Domain::where('user_id', auth()->user()->id)->first();
+        if ($domain == "") {
+            return redirect()->route('user.domain.index')->withErrors("Please Add Domain First");
+        }
         return view('user.dashboard.index');
     }
 

@@ -42,6 +42,7 @@ class DomainController extends Controller
             'port' => 'nullable|integer',
             'default' => 'required|string',
             'password' => 'required|string',
+            'protocol' => 'nullable|string',
         ]);
 
         $domain = new Domain();
@@ -50,6 +51,7 @@ class DomainController extends Controller
         $domain->port = $validated['port'];
         $domain->password = $validated['password'];
         $domain->default = $validated['default'];
+        $domain->protocol = $validated['protocol'];
         $domain->save();
 
         return back()->with('success', 'Domain Added');

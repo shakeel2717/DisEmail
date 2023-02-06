@@ -18,20 +18,24 @@
         <form action="{{ route('user.domain.store') }}" method="POST">
             @csrf
             <div class="form-group">
-                <label for="domain">Add new Domain</label>
-                <input type="text" name="domain" class="form-control" id="domain">
+                <label for="domain">Add new Domain *</label>
+                <input type="text" name="domain" class="form-control" id="domain" required>
             </div>
             <div class="form-group">
-                <label for="default">Default Email</label>
-                <input type="text" name="default" class="form-control" id="default">
+                <label for="default">Default Email *</label>
+                <input type="text" name="default" class="form-control" id="default" required>
             </div>
             <div class="form-group">
-                <label for="password">Email Password</label>
-                <input type="text" name="password" class="form-control" id="password">
+                <label for="password">Email Password *</label>
+                <input type="text" name="password" class="form-control" id="password" required>
             </div>
             <div class="form-group">
                 <label for="port">PORT</label>
                 <input type="text" name="port" class="form-control" id="port" value="993">
+            </div>
+            <div class="form-group">
+                <label for="protocol">PROTOCOL</label>
+                <input type="text" name="protocol" class="form-control" id="protocol">
             </div>
             <div class="form-group">
                 <button class="btn btn-primary btn-sm" type="submit">Add Domain</button>
