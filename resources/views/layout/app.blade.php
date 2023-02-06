@@ -161,7 +161,17 @@
     @livewireScripts
     @powerGridScripts
     @yield("footer")
-
+    <script>
+        function copyToClipboard(elementId) {
+            var elementValue = $("#" + elementId).html();
+            var tempInput = $("<input>");
+            $("body").append(tempInput);
+            tempInput.val(elementValue).select();
+            document.execCommand("copy");
+            tempInput.remove();
+            alert("Text Copied to Clipboard: " + elementValue);
+        }
+    </script>
 </body>
 
 </html>

@@ -16,6 +16,7 @@ class Emails extends Component
     public $domain;
     public $domain_id;
     public $hostname;
+    public $fullEmail;
     public $emailShow = false;
     public $searchArea = true;
 
@@ -39,6 +40,7 @@ class Emails extends Component
     {
         $hostname = '{mail.' . $this->domain->domain . ':' . $this->domain->port . '/imap/ssl}INBOX';
         $default = $this->domain->default . '@' . $this->domain->domain;
+        $this->fullEmail = $default;
         $inbox = imap_open($hostname, $default, $this->domain->password) or die('Cannot connect to cPanel: ' . imap_last_error());
         $emails = imap_search($inbox, 'ALL');
         if ($emails) {

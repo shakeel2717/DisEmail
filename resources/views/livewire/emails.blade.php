@@ -11,7 +11,7 @@
     </div>
     @endif
     @if ($emailShow)
-    <h4 class="amount">Emails!</h4>
+    <h4 class="amount" id="text1" onclick="copyToClipboard('text1')">{{$fullEmail}}</h4>
     <div class="row">
         <div class="col my-3">
             <button class="btn btn-primary btn-sm" wire:click="refresh">Refresh</button>
@@ -25,7 +25,7 @@
                     <div class="col-md-4">
                         <ul class="nav link-list-menu border border-light round m-0" role="tablist">
                             @foreach ($emails as $email)
-                            <li><a class="" data-bs-toggle="tab" href="#tab{{ $loop->iteration }}" aria-selected="false" role="tab" tabindex="-1"><em class="icon ni ni-user"></em><span>{{ Str::limit($email['subject'],20) }}</span></a></li>
+                            <li><a class="" data-bs-toggle="tab" href="#tab{{ $loop->iteration }}" aria-selected="false" role="tab" tabindex="-1"><em class="icon ni ni-comments"></em><span>{{ Str::limit($email['subject'],20) }}</span></a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -37,7 +37,7 @@
                                     <p>({{ $email['to'] }})</p>
                                     <p>{{ now()->parse($email['time'])->diffForHumans() }}</p>
                                 </div>
-                                <p>{{ $email['subject'] }}</p>
+                                <p><b>{{ $email['subject'] }}</b></p>
                                 <p>{{ $email['body'] }}</p>
                             </div>
                             @empty
