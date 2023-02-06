@@ -45,7 +45,7 @@
                                     <p>{{ now()->parse($email['time'])->diffForHumans() }}</p>
                                 </div>
                                 <p>Subject:<b>{{ $email['subject'] }}</b></p>
-                                <p>{{ $email['body'] }}</p>
+                                <p>{!! $email['body'] !!}</p>
                             </div>
                             @empty
                             <div class="col-md-12 mb-2 mb-2">
