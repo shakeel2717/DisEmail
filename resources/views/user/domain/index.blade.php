@@ -22,6 +22,18 @@
                 <input type="text" name="domain" class="form-control" id="domain">
             </div>
             <div class="form-group">
+                <label for="default">Default Email</label>
+                <input type="text" name="default" class="form-control" id="default">
+            </div>
+            <div class="form-group">
+                <label for="password">Email Password</label>
+                <input type="text" name="password" class="form-control" id="password">
+            </div>
+            <div class="form-group">
+                <label for="port">PORT</label>
+                <input type="text" name="port" class="form-control" id="port" value="993">
+            </div>
+            <div class="form-group">
                 <button class="btn btn-primary btn-sm" type="submit">Add Domain</button>
             </div>
         </form>
@@ -31,16 +43,17 @@
     @forelse ($domains as $domain)
     <div class="col-md-12 mb-2 mb-2">
         <div class="card card-bordered shadow card-full">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="m-2">
-                    <h5 class="amount">{{ $domain->domain }} </h5>
+            <div class="p-4 d-flex justify-content-between align-items-center">
+                <div class="data">
+                    <h5 class="amount">{{ $domain->domain }}:{{ $domain->port }} </h5>
+                    <p>{{ $domain->default }}{{ "@". $domain->domain }}</p>
                     <p>{{ $domain->created_at->diffForHumans() }}</p>
-                    <form action="{{ route('user.domain.destroy',['domain' => $domain->id]) }}" method="POST">
-                        @method("DELETE")
-                        @csrf
-                        <button class="btn btn-danger btn-sm" type="submit">Remove Domain</button>
-                    </form>
                 </div>
+                <form action="{{ route('user.domain.destroy',['domain' => $domain->id]) }}" method="POST">
+                    @method("DELETE")
+                    @csrf
+                    <button class="btn btn-danger btn-sm" type="submit">Remove Domain</button>
+                </form>
             </div>
         </div>
     </div>

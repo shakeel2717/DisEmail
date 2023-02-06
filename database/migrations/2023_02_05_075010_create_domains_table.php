@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('domain')->unique();
+            $table->string('default')->default('default');
+            $table->string('password');
+            $table->integer('port')->default(993);
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

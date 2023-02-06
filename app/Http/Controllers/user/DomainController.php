@@ -38,14 +38,21 @@ class DomainController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'domain' => 'required|unique:domains,domain'
+            'domain' => 'required|unique:domains,domain',
+            'port' => 'nullable|integer',
+            'default' => 'required|string',
+            'password' => 'required|string',
         ]);
+
         $domain = new Domain();
         $domain->user_id = auth()->user()->id;
         $domain->domain = $validated['domain'];
+        $domain->port = $validated['port'];
+        $domain->password = $validated['password'];
+        $domain->default = $validated['default'];
         $domain->save();
 
-        return back()->with('success','Domain Added');
+        return back()->with('success', 'Domain Added');
     }
 
     /**
@@ -93,6 +100,6 @@ class DomainController extends Controller
         $domain = Domain::FindOrFail($id);
         $domain->delete();
 
-        return back()->with('success','Domain Removed');
+        return back()->with('success', 'Domain Removed');
     }
 }

@@ -17,7 +17,7 @@
         </div>
         <div class="form-group">
             <label for="username">username</label>
-            <input type="text" name="username" class="form-control" id="username" wire:model="username" value="{{ $username }}">
+            <input type="text" name="username" class="form-control form-control-lg" id="username" wire:model="username" value="{{ $username }}">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
