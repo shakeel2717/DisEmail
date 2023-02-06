@@ -41,14 +41,14 @@ class Emails extends Component
         $hostname = '{' . $this->domain->protocol . $this->domain->domain . ':' . $this->domain->port . '/imap/ssl}INBOX';
         $default = $this->domain->default . '@' . $this->domain->domain;
         $this->fullEmail = $this->username;
-        $this->username = explode("@", $this->username)[0];
+        $username = explode("@", $this->username)[0];
         $inbox = imap_open($hostname, $default, $this->domain->password) or die('Cannot connect to cPanel: ' . imap_last_error());
         $emails = imap_search($inbox, 'ALL');
         if ($emails) {
             $data = array_reverse($emails);
             foreach ($data as $email_number) {
                 $header = imap_headerinfo($inbox, $email_number);
-                if ($header->to[0]->mailbox == $this->username) {
+                if ($header->to[0]->mailbox == $username) {
                     $subject = $header->subject;
                     $body = imap_fetchbody($inbox, $email_number, 1);
                     $time = date("Y-m-d H:i:s", $header->udate);
