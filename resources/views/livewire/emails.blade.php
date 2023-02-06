@@ -11,7 +11,11 @@
     </div>
     @endif
     @if ($emailShow)
-    <h4 class="amount" id="text1" onclick="copyToClipboard('text1')">{{$fullEmail}}</h4>
+    <div class="d-flex align-items-center">
+        <button onclick="copyToClipboard('text1')" class="btn btn-primary btn-sm me-1">Copy</button>
+        <h4 class="amount" id="text1">{{$fullEmail}}</h4>
+    </div>
+
     <div class="row">
         <div class="col my-3">
             <button class="btn btn-primary btn-sm" wire:click="refresh">Refresh</button>
