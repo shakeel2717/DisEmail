@@ -16,6 +16,8 @@ class Emails extends Component
     public $domain;
     public $domain_id;
     public $hostname;
+    public $emailShow = false;
+    public $searchArea = true;
 
     public function mount()
     {
@@ -24,18 +26,20 @@ class Emails extends Component
 
     public function fetch()
     {
-        $this->domain = Domain::find($this->domain_id);
-        $this->hostname = '{'.$this->domain->domain . ':993/imap/ssl}INBOX';
+        $this->emailShow = true;
+        // getting this user Domain
+        $this->domain = Domain::where('user_id', auth()->user()->id)->first();
         $this->emails = [];
-        $this->fetchEmails($this->hostname);
+        $this->fetchEmails();
     }
 
 
 
-    public function fetchEmails($hostname)
+    public function fetchEmails()
     {
-        $default = $this->default . '@' . $this->domain->domain;
-        $inbox = imap_open($hostname, $default, $this->password) or die('Cannot connect to cPanel: ' . imap_last_error());
+        $hostname = '{mail.' . $this->domain->domain . ':' . $this->domain->port . '/imap/ssl}INBOX';
+        $default = $this->domain->default . '@' . $this->domain->domain;
+        $inbox = imap_open($hostname, $default, $this->domain->password) or die('Cannot connect to cPanel: ' . imap_last_error());
         $emails = imap_search($inbox, 'ALL');
         if ($emails) {
             $data = array_reverse($emails);
@@ -55,15 +59,14 @@ class Emails extends Component
             }
         }
         imap_close($inbox);
-        cache()->forever('emails', $this->emails);
+        $this->searchArea = false;
     }
 
 
     public function refresh()
     {
-        cache()->forget('emails');
         $this->emails = [];
-        $this->fetchEmails($this->hostname);
+        $this->fetchEmails();
     }
 
     public function render()
