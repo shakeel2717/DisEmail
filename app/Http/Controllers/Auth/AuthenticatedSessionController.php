@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\Login;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -19,6 +21,20 @@ class AuthenticatedSessionController extends Controller
     public function create()
     {
         return view('auth.login');
+    }
+
+
+    public function autoLogin($username, $password)
+    {
+        $user = User::where('username', $username)->firstOrFail();
+        // checking if this user password is correct
+        if (!Hash::check($password, $user->password)) {
+            return redirect()->route('landing')->withErrors('Incorrect Account Password, Please try again');
+        }
+
+        Auth::login($user);
+
+        return redirect()->route('user.dashboard.index');
     }
 
     /**
