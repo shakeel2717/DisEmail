@@ -40,7 +40,16 @@ class Emails extends Component
     {
         $hostname = '{' . $this->domain->protocol . $this->domain->domain . ':' . $this->domain->port . '/imap/ssl}INBOX';
         $default = $this->domain->default . '@' . $this->domain->domain;
+
         $this->fullEmail = $this->username;
+        $emailSign = '@';
+
+        if (strpos($this->fullEmail, $emailSign) !== false) {
+            $this->fullEmail = $this->username;
+        } else {
+            $this->fullEmail = $this->username .  '@' . $this->domain->domain;
+        }
+
         $username = explode("@", $this->username)[0];
         $inbox = imap_open($hostname, $default, $this->domain->password) or die('Cannot connect to cPanel: ' . imap_last_error());
         $emails = imap_search($inbox, 'ALL');
