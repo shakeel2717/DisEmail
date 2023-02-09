@@ -17,7 +17,7 @@ class User
      */
     public function handle(Request $request, Closure $next)
     {
-        if (env('APP_NAME') != "DisEmail") {
+        if (env('APP_NAME') != "DisEmails") {
             abort(419);
         }
         // checking suspend status
