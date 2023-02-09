@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" wire:poll.2000ms>
     @if ($searchArea)
     <div class="my-2">
         <div class="form-group">
