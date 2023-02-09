@@ -1,4 +1,4 @@
-<div class="row" wire:poll.2000ms>
+<div class="row">
     @if ($searchArea)
     <div class="my-2">
         <div class="form-group">
@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" wire:poll="fetch">
         <div class="card card-bordered card-preview">
             <div class="card-inner">
                 <div class="row g-gs">
